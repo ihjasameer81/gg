@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KMCT IETM | BCA Department</title>
+
+<style>
+/* ===== GLOBAL ===== */
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background: 
+        linear-gradient(rgba(255,0,0,0.05), rgba(255,0,0,0.05)),
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+/* ===== HEADER ===== */
+header {
+    background: 
+        linear-gradient(rgba(139,0,0,0.85), rgba(255,0,0,0.85)),
+        url("https://images.unsplash.com/photo-1523050854058-8df90110c9f1");
+    background-size: cover;
+    background-position: center;
+    background-blend-mode: multiply;
+    color: white;
+    text-align: center;
+    padding: 40px 20px;
+}
+
+/* ===== NAV ===== */
+nav {
+    background: #8b0000;
+    padding: 12px;
+    text-align: center;
+    position: sticky;
+    top: 0;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    margin: 15px;
+    font-weight: bold;
+}
+
+nav a:hover {
+    text-decoration: underline;
+}
+
+/* ===== SECTIONS ===== */
+section {
+    background: 
+        linear-gradient(rgba(255,255,255,0.95), rgba(255,255,255,0.95)),
+    margin: 30px;
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    animation: fade 1s;
+}
+
+h2 {
+    color: darkred;
+}
+
+/* ===== FACULTY ===== */
+.faculty-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+}
+
+.faculty-card {
+    background: #ffe6e6;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    transition: 0.3s;
+}
+
+.faculty-card img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 10px;
+}
+
+.faculty-card:hover {
+    transform: translateY(-10px);
+    background: #ffcccc;
+}
+
+/* ===== LOGIN ===== */
+.login-box {
+    max-width: 350px;
+    margin: auto;
+    background: #ffecec;
+    padding: 25px;
+    border-radius: 10px;
+}
+
+input, select {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+}
+
+button {
+    width: 100%;
+    padding: 12px;
+    background: darkred;
+    color: white;
+    border: none;
+    font-size: 16px;
+}
+
+button:hover {
+    background: red;
+}
+
+/* ===== FOOTER ===== */
+footer {
+    background: #8b0000;
+    color: white;
+    text-align: center;
+    padding: 15px;
+}
+
+/* ===== ANIMATION ===== */
+@keyframes fade {
+    from {opacity: 0; transform: translateY(20px);}
+    to {opacity: 1; transform: translateY(0);}
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>KMCT Institute of Emerging Technology & Management</h1>
+    <h3>Department of Bachelor of Computer Applications (BCA)</h3>
+</header>
+
+<nav>
+    <a href="#about">About</a>
+    <a href="#ktu">KTU Syllabus</a>
+    <a href="#faculty">Faculty</a>
+    <a href="#login">Login</a>
+</nav>
+
+<section id="about">
+    <h2>About BCA Course</h2>
+    <p>
+        Bachelor of Computer Applications (BCA) focuses on software development,
+        programming, data science, cloud computing, and IT applications.
+    </p>
+</section>
+
+<section id="ktu">
+    <h2>KTU BCA Syllabus – Semester Wise</h2>
+
+    <select id="semesterSelect" onchange="loadSubjects()">
+        <option value="">-- Select Semester --</option>
+        <option value="1">Semester 1</option>
+        <option value="2">Semester 2</option>
+        <option value="3">Semester 3</option>
+        <option value="4">Semester 4</option>
+        <option value="5">Semester 5</option>
+        <option value="6">Semester 6</option>
+        <option value="7">Semester 7</option>
+        <option value="8">Semester 8</option>
+    </select>
+
+    <div id="subjectList"></div>
+</section>
+
+<section id="faculty">
+    <h2>Faculty Members</h2>
+
+    <div class="faculty-grid">
+        <div class="faculty-card">
+            <strong>Dr. A. Rahman</strong><br>HOD
+        </div>
+
+        <div class="faculty-card">
+            <strong>Ms. Nisha K</strong><br>Web Development
+        </div>
+
+        <div class="faculty-card">
+            <strong>Mr. Arun P</strong><br>Data Science
+        </div>
+
+        <div class="faculty-card">
+            <strong>Ms. Anjali S</strong><br>Python Programming
+        </div>
+
+        <div class="faculty-card">
+           
+            <strong>Mr. Faisal K</strong><br>Cloud Computing
+        </div>
+    </div>
+</section>
+
+<section id="login">
+    <h2>Student Login Portal</h2>
+
+    <div class="login-box">
+        <input type="text" id="username" placeholder="Username">
+        <input type="password" id="password" placeholder="Password">
+        <button onclick="login()">Login</button>
+        <p id="msg" style="text-align:center;"></p>
+    </div>
+</section>
+
+<footer>
+    © 2026 KMCT IETM | BCA Department
+</footer>
+
+<script>
+function login() {
+    let u = username.value;
+    let p = password.value;
+    msg.style.color = (u === "student" && p === "bca123") ? "green" : "red";
+    msg.innerHTML = (u === "student" && p === "bca123")
+        ? "Login Successful"
+        : "Invalid Credentials";
+}
+
+const syllabus = {
+    1:["Computer Fundamentals","C Programming","Mathematics","Digital Electronics"],
+    2:["Data Structures","OOP with C++","Discrete Mathematics","Computer Organization"],
+    3:["DBMS","Java","Operating Systems","Web Tech I"],
+    4:["Software Engineering","Computer Networks","Python","Web Tech II"],
+    5:["Data Science","Mobile App Dev","Cloud Computing","Mini Project"],
+    6:["AI","Machine Learning","Cyber Security","Internship"],
+    7:["Advanced Web","Big Data","Electives","Project Phase II"],
+    8:["Major Project","Industrial Training","Viva Voce"]
+};
+
+function loadSubjects() {
+    let sem = semesterSelect.value;
+    subjectList.innerHTML = sem
+        ? `<h3>Semester ${sem}</h3><ul>${syllabus[sem].map(s=>`<li>${s}</li>`).join("")}</ul>`
+        : "";
+}
+</script>
+
+</body>
+</html>
